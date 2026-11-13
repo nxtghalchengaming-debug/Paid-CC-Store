@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paid CC Redeem Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --purple: #a477ff;
+    --background: #08080d;
+    --card: #12111b;
+    --muted: #858594;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 50% 0%, #38205e 0%, transparent 48%),
+        var(--background);
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+    animation: appear .8s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* TOP LEFT WATERMARK */
+.watermark {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    z-index: 999;
+    color: #ffffff75;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    pointer-events: none;
+}
+
+.logo {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #b18aff, #6835d6);
+    font-size: 29px;
+    font-weight: 900;
+    box-shadow: 0 0 35px #8b5cf655;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-bottom: 18px;
+    border: 1px solid #a36bff40;
+    border-radius: 30px;
+    background: #a36bff17;
+    color: #c5a9ff;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+h1 {
+    margin-bottom: 12px;
+    font-size: clamp(29px, 8vw, 38px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+}
+
+h1 span {
+    background: linear-gradient(90deg, white, #b18aff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    margin-bottom: 30px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.redeem-card {
+    padding: 28px 23px;
+    border: 1px solid #ffffff13;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #171522, #101019);
+    box-shadow: 0 20px 70px #0008;
+}
+
+.card-title {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.card-subtitle {
+    margin-bottom: 23px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+input {
+    width: 100%;
+    padding: 16px 12px;
+    border: 1px solid #393344;
+    border-radius: 11px;
+    outline: none;
+    background: #090910;
+    color: white;
+    text-align: center;
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+input:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 15px #9b6cff22;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: .25s;
+}
+
+.redeem-btn {
+    margin-top: 13px;
+    background: linear-gradient(100deg, #8650e9, #ae80ff);
+    color: white;
+    box-shadow: 0 5px 22px #9b6cff35;
+}
+
+.redeem-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px #9b6cff60;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 23px 0;
+    color: #62616e;
+    font-size: 10px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #ffffff15;
+}
+
+.contact-btn {
+    border: 1px solid #9b6cff40;
+    background: #9b6cff12;
+    color: #d0b9ff;
+}
+
+.contact-btn:hover {
+    background: #9b6cff25;
+}
+
+.contact-box {
+    display: none;
+    margin-top: 18px;
+    padding: 20px 12px;
+    border: 1px solid #9b6cff45;
+    border-radius: 13px;
+    background: #0b0a12;
+    animation: appear .3s ease;
+}
+
+.contact-box h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.contact-box p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.ig {
+    display: inline-block;
+    margin-top: 13px;
+    color: #c5a5ff;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.ig:hover {
+    color: white;
+}
+
+.message {
+    min-height: 16px;
+    margin-top: 15px;
+    color: #ff7777;
+    font-size: 12px;
+}
+
+.footer {
+    margin-top: 28px;
+    color: #5d5b69;
+    font-size: 10px;
+    line-height: 2;
+}
+
+@media(max-width: 480px) {
+    .redeem-card {
+        padding: 25px 18px;
+    }
+
+    .watermark {
+        font-size: 9px;
+        top: 16px;
+        left: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- WATERMARK -->
+<div class="watermark">
+    GHALCHEN PAID STORE
+</div>
+
+<div class="container">
+
+    <div class="logo">P</div>
+
+    <div class="tag">✦ PREMIUM ACCESS ✦</div>
+
+    <h1>Paid CC <span>Redeem Store</span></h1>
+
+    <p class="description">
+        Enter your exclusive redeem code below<br>
+        to unlock your purchased content.
+    </p>
+
+    <div class="redeem-card">
+
+        <div class="card-title">Redeem Your Code</div>
+
+        <div class="card-subtitle">
+            Enter your code to access your content.
+        </div>
+
+        <input
+            type="text"
+            id="redeemCode"
+            placeholder="XXXX-XXXX-XXXX-XXXX"
+            autocomplete="off"
+            spellcheck="false"
+        >
+
+        <button class="redeem-btn" onclick="redeem()">
+            REDEEM NOW →
+        </button>
+
+        <div class="message" id="message"></div>
+
+        <div class="divider">OR</div>
+
+        <button class="contact-btn" onclick="toggleContact()">
+            DON'T HAVE A CODE?
+        </button>
+
+        <div class="contact-box" id="contact">
+
+            <h3>GET YOUR REDEEM CODE</h3>
+
+            <p>
+                Don't have a code yet?<br>
+                DM me on Instagram to buy a redeem code.
+            </p>
+
+            <a
+                class="ig"
+                href="https://instagram.com/ghalchenaep"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                @ghalchenaep ↗
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        PREMIUM ACCESS • EXCLUSIVE CONTENT<br>
+        © 2026 PAID CC REDEEM STORE
+    </div>
+
+</div>
+
+<script>
+
+// ==================================
+// ALL 11 VALID REDEEM CODES
+// ==================================
+
+const validCodes = [
+    "GCHN-7K9P-X2MQ-8R5L",
+    "GCHN-4T8W-N6KD-2P9A",
+    "GCHN-9M3R-V7QX-5L2B",
+    "GCHN-6F2K-P8ZD-3W1N",
+    "GCHN-5X9B-J4MT-7Q6C",
+    "GCHN-2N8V-R5KL-9D3P",
+    "GCHN-8Q4M-T2WX-6K7A",
+    "GCHN-3P7D-Y9RF-4N2L",
+    "GCHN-1K6Z-M8QB-5T9X",
+    "GCHN-7V2C-L4NP-8M5D",
+    "GCHN-9D5F-W3KR-2X8Q"
+];
+
+// ==================================
+// GOOGLE DRIVE LINK
+// ==================================
+
+const driveLink =
+"https://drive.google.com/drive/folders/1WRUWF4abpWtgILbTjJjJ1YSdL9tQQsh2?usp=sharing";
+
+// ==================================
+// REDEEM FUNCTION
+// ==================================
+
+function redeem() {
+
+    const code = document
+        .getElementById("redeemCode")
+        .value.trim()
+        .toUpperCase();
+
+    const message = document.getElementById("message");
+
+    if (!code) {
+        message.style.color = "#ff7777";
+        message.innerText = "Please enter a redeem code.";
+        return;
+    }
+
+    if (validCodes.includes(code)) {
+
+        message.style.color = "#70f5a2";
+        message.innerText = "Code verified! Redirecting...";
+
+        setTimeout(() => {
+            window.location.href = driveLink;
+        }, 1000);
+
+    } else {
+
+        message.style.color = "#ff7777";
+        message.innerText = "Invalid code! Please try again.";
+
+    }
+}
+
+// ==================================
+// INSTAGRAM CONTACT BUTTON
+// ==================================
+
+function toggleContact() {
+
+    const contact = document.getElementById("contact");
+
+    contact.style.display =
+        contact.style.display === "block"
+        ? "none"
+        : "block";
+}
+
+// ENTER KEY SUPPORT
+
+document.getElementById("redeemCode")
+.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        redeem();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
